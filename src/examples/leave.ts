@@ -55,7 +55,7 @@ async function leave() {
     let list=await api.data.findItems({ "items.status": 'wait', "items.type":'bpmn:UserTask' },manager1);
         
         list.forEach(item=>{
-                console.log('findItems: item: ',item.elementId,'model',item.processName,'caseId',item.data.caseId,
+                console.log('findItems: item: ',item.elementId,'model',item.processName,
                 'started:',item.startedAt.toISOString().split('T')[0],item.type);
 
         });    
