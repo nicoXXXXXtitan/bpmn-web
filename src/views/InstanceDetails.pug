@@ -21,7 +21,7 @@ block content
 	div(style="border-bottom: 1px solid #999;padding-bottom: 10px;overflow: hidden;")
 
 		h1(style="float:left;")
-			span #{title}
+			span #{title} :  #{instance.name}
 
 		span(id='Details-block',font-size='10px')
 		
@@ -68,35 +68,28 @@ block content
 		  }); // end ready
 	
 	div(id="instances")
-		h4 Instance Information 
-		- let lastAt = (lastItem.endedAt) ? lastItem.endedAt : lastItem.startedAt;
-		table
-			tr 
-				td name:
-				td  #{instance.name}
-				td id:
-				td #{instance.id}
-			tr
-				td started At
-				td(class='startDate') #{(instance.startedAt)}
-				td ended At
-				td #{(instance.endedAt)}
-			tr
-				td lastAt
-				td #{lastAt} 
-			tr
-				td lastItem
-				td #{lastItem.elementId}
-				td last status
-				td #{lastItem.status}
-
-					
-		h4 Instance Data 
-		table
-			each v in vars
+		div(class="instance-information" style="display: none") 
+			h4 Instance Information 
+			- let lastAt = (lastItem.endedAt) ? lastItem.endedAt : lastItem.startedAt;
+			table
+				tr 
+					td name:
+					td  #{instance.name}
+					td id:
+					td #{instance.id}
 				tr
-					td #{v.key}
-					td #{v.value}
+					td started At
+					td(class='startDate') #{(instance.startedAt)}
+					td ended At
+					td #{(instance.endedAt)}
+				tr
+					td lastAt
+					td #{lastAt} 
+				tr
+					td lastItem
+					td #{lastItem.elementId}
+					td last status
+					td #{lastItem.status}
 
 		div!= svg
 
@@ -157,11 +150,20 @@ block content
 							td(style="width:1%;white-space:nowrap") #{prettyDate(log.date)}
 							td #{log.message}
 			
-		h4 Instance Logs <button id="showHide" onclick="showLogs()">&darr;</button>
-		div(id="logs" style="display:none;") 
-			table(style='width:100%')
-				each log in logs
-					tr
-						td(style="white-space:nowrap") #{prettyDate(log.date)}
-						td #{log.message}
+		
+		div(class="instance-logs" style="display: none") 
+			h4 Instance Logs <button id="showHide" onclick="showLogs()">&darr;</button>
+			div(id="logs" style="display:none;") 
+				table(style='width:100%')
+					each log in logs
+						tr
+							td(style="white-space:nowrap") #{prettyDate(log.date)}
+							td #{log.message}
+
+		h4 Instance Data 
+		table
+			each v in vars
+				tr
+					td #{v.key}
+					td #{v.value}
 			
