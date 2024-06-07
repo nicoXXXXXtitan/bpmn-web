@@ -142,14 +142,15 @@ block content
 								td
 								td(colspan=8) #{assign}
 
-		h4 Instance Info 
-		div(id="info" ) 
-			table(style='width:100%')
-				each log in logs
-					if (log.type=='info')
-						tr
-							td(style="width:1%;white-space:nowrap") #{prettyDate(log.date)}
-							td #{log.message}
+		div(class="instance-info" style="display: none") 
+			h4 Instance Info 
+			div(id="info" ) 
+				table(style='width:100%')
+					each log in logs
+						if (log.type=='info')
+							tr
+								td(style="width:1%;white-space:nowrap") #{prettyDate(log.date)}
+								td #{log.message}
 			
 		
 		div(class="instance-logs" style="display: none") 
@@ -168,7 +169,7 @@ block content
 					td #{v.key}
 					td #{v.value}
 
-
-		h4 Model Documentation<button id="showDoc" onclick="showDocs()">&darr;</button>
-		include includes/modelDoc.pug
-			
+		div(class="model-documentation" style="display: none") 
+			h4 Model Documentation<button id="showDoc" onclick="showDocs()">&darr;</button>
+			include includes/modelDoc.pug
+				
