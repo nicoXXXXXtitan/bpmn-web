@@ -91,55 +91,56 @@ block content
 					td last status
 					td #{lastItem.status}
 
-		div!= svg
+		div(id="instance-block")
+			div(class="instance-svg")
+				div!= svg
+			
+			div(class="instance-items")
+				h4 Instance Items
 
-		h4 Model Documentation<button id="showDoc" onclick="showDocs()">&darr;</button>
-		include includes/modelDoc.pug
-		h4 Instance Items
-
-		span Times shown are from the start of the Execution
-		table
-			tr
-				td seq
-				td Element Id
-				td Name
-				td Started
-				td Ended
-				td Status
-				td Type
-				td User
-				td Action
-					
-			- let seq=0;
-			each item in items
-				- var ref = "?id="+item.id+"&processName="+instance.name+"&elementId="+item.elementId;
-				- var label='';
-				- var label2='';
-				- if (item.status=='wait' && item.type=='bpmn:UserTask') label= 'Execute';
-				- if (item.status=='wait' && item.type=='bpmn:UserTask') label2= 'Assign';
-				- if (user && user.isAdmin() && item.status=='wait' && item.type.includes('Event')) label= 'Force';
-				- var assign='';
-				- if (item.candidateUsers) assign+='>Assigned to users:\''+item.candidateUsers+'\'';
-				- if (item.candidateGroups) assign+=' groups: \''+item.candidateGroups+'\'';
-				- if (item.assignee) assign+=' Assigned to: \''+item.assignee+'\'';
-				- if (item.dueDate) assign+=' Due on:'+item.dueDate;
-				- seq++;
+				span Times shown are from the start of the Execution
+				table
 					tr
-						td #{seq}
-						td #{item.elementId}
-						td #{item.name}
-						td(class='date') #{item.startedAt}
-						td(class='date') #{item.endedAt}
-						td #{item.status}
-						td #{item.type}
-						td #{item.userName}
-						td
-							a(href=`/invokeItem${ref}`) #{label} 
-							a(href=`/assign${ref}`) #{label2}
-				if (!assign=='')
-					tr
-						td
-						td(colspan=8) #{assign}
+						td seq
+						td Element Id
+						td Name
+						td Started
+						td Ended
+						td Status
+						td Type
+						td User
+						td Action
+							
+					- let seq=0;
+					each item in items
+						- var ref = "?id="+item.id+"&processName="+instance.name+"&elementId="+item.elementId;
+						- var label='';
+						- var label2='';
+						- if (item.status=='wait' && item.type=='bpmn:UserTask') label= 'Execute';
+						- if (item.status=='wait' && item.type=='bpmn:UserTask') label2= 'Assign';
+						- if (user && user.isAdmin() && item.status=='wait' && item.type.includes('Event')) label= 'Force';
+						- var assign='';
+						- if (item.candidateUsers) assign+='>Assigned to users:\''+item.candidateUsers+'\'';
+						- if (item.candidateGroups) assign+=' groups: \''+item.candidateGroups+'\'';
+						- if (item.assignee) assign+=' Assigned to: \''+item.assignee+'\'';
+						- if (item.dueDate) assign+=' Due on:'+item.dueDate;
+						- seq++;
+							tr
+								td #{seq}
+								td #{item.elementId}
+								td #{item.name}
+								td(class='date') #{item.startedAt}
+								td(class='date') #{item.endedAt}
+								td #{item.status}
+								td #{item.type}
+								td #{item.userName}
+								td
+									a(href=`/invokeItem${ref}`) #{label} 
+									a(href=`/assign${ref}`) #{label2}
+						if (!assign=='')
+							tr
+								td
+								td(colspan=8) #{assign}
 
 		h4 Instance Info 
 		div(id="info" ) 
@@ -166,4 +167,8 @@ block content
 				tr
 					td #{v.key}
 					td #{v.value}
+
+
+		h4 Model Documentation<button id="showDoc" onclick="showDocs()">&darr;</button>
+		include includes/modelDoc.pug
 			
