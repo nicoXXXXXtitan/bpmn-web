@@ -162,12 +162,13 @@ block content
 							td(style="white-space:nowrap") #{prettyDate(log.date)}
 							td #{log.message}
 
-		h4 Instance Data 
-		table
-			each v in vars
-				tr
-					td #{v.key}
-					td #{v.value}
+		div(class="instance-data" style="display: none") 
+			h4 Instance Data 
+			table
+				each v in vars
+					tr
+						td #{v.key}
+						td #{v.value}
 
 		div(class="model-documentation" style="display: none") 
 			h4 Model Documentation<button id="showDoc" onclick="showDocs()">&darr;</button>
