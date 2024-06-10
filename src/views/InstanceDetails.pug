@@ -96,15 +96,15 @@ block content
 				div!= svg
 			
 			div(class="instance-items")
-				h4 Instance Items
+				h4 Les éléments d'instance
 					
 				table.table.table-striped
 					thead
 						tr
-							th(scope='col') seq
+							th(scope='col') Seq
 							th(scope='col') Element Id
-							th(scope='col') Name
-							th(scope='col') Status
+							th(scope='col') Nom
+							th(scope='col') Statut
 							th(scope='col') Action
 							
 					tbody
@@ -113,9 +113,9 @@ block content
 							- var ref = "?id="+item.id+"&processName="+instance.name+"&elementId="+item.elementId;
 							- var label='';
 							- var label2='';
-							- if (item.status=='wait' && item.type=='bpmn:UserTask') label= 'Execute';
-							- if (item.status=='wait' && item.type=='bpmn:UserTask') label2= 'Assign';
-							- if (user && user.isAdmin() && item.status=='wait' && item.type.includes('Event')) label= 'Force';
+							- if (item.status=='wait' && item.type=='bpmn:UserTask') label= 'exécuter';
+							- if (item.status=='wait' && item.type=='bpmn:UserTask') label2= 'Attribuer';
+							- if (user && user.isAdmin() && item.status=='wait' && item.type.includes('Event')) label= 'Forcer';
 							- var assign='';
 							- if (item.candidateUsers) assign+='>Assigned to users:\''+item.candidateUsers+'\'';
 							- if (item.candidateGroups) assign+=' groups: \''+item.candidateGroups+'\'';
