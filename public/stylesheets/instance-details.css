@@ -21,6 +21,11 @@ h1 {
     text-align: center;
 }
 
+#instance-block .instance-items h4 {
+    padding: 20px;
+}
+
+
 #instance-block .instance-items table th{
     padding: 1px 0px !important ; 
 }
@@ -65,10 +70,35 @@ h1 {
 
 .page-invoking-header {
     text-align: center;
+    padding: 20px;
 }
 
 
 .page-invoking-content {
     width: 30%;
     margin: 0 auto;
+    text-align: center;
+}
+
+.page-invoking-form {
+    width: 40%;
+    margin: 0 auto;
+}
+
+.page-invoking-form form select{
+    margin-top: 7px;
+}
+
+.page-invoking-form form label{
+    text-align: left;
+}
+
+.page-invoking-form .mb-3{
+    display: flex;
+    justify-content: center;
+}
+
+.page-invoking-content table td{
+    padding: 8px 0px !important ;
+    vertical-align: middle;
 }
