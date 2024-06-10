@@ -97,8 +97,6 @@ block content
 			
 			div(class="instance-items")
 				h4 Instance Items
-
-				span Times shown are from the start of the Execution
 					
 				table.table.table-striped
 					thead
@@ -131,8 +129,14 @@ block content
 								td #{item.name}
 								td #{item.status}
 								td
-									a(href=`/invokeItem${ref}`) #{label} 
-									a(href=`/assign${ref}`) #{label2}
+									if (!label=='' || !label2=='')
+									
+										div.instance-detail-buttons
+											div.instance-detail-button
+												a(class="instance-detail-button" href=`/invokeItem${ref}`) #{label}
+
+											div.instance-detail-button
+												a(class="instance-detail-button" href=`/assign${ref}`) #{label2}						
 						if (!assign=='')
 							tr
 								td

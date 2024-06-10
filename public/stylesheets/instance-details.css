@@ -10,11 +10,41 @@
 }
 
 #instance-block .instance-items{
-    width: 40%;
+    width: 30%;
     height: auto
+}
+
+#instance-block .instance-items table th{
+    padding: 1px 0px !important ; 
+}
+
+#instance-block .instance-items table td{
+    padding: 8px 0px !important ; 
 }
 
 #instance-block .instance-svg div svg{
     width: 90%;
     height: auto;
+}
+
+.instance-detail-buttons {
+    display: flex;
+}
+
+.instance-detail-button{
+    border-radius: 6px;
+    border-color: rgb(33, 37, 41);
+    padding: 9px;
+}
+
+.instance-detail-button a{
+    color: #fff;
+    background-color: #1B84FF;
+    border-color: #1B84FF;
+    cursor: pointer; 
+}
+
+.instance-detail-button a:hover{
+    opacity: 0.65;
+    color: #fff;
 }
