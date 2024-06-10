@@ -61,3 +61,14 @@ h1 {
     opacity: 0.65;
     color: #fff;
 }
+
+
+.page-invoking-header {
+    text-align: center;
+}
+
+
+.page-invoking-content {
+    width: 30%;
+    margin: 0 auto;
+}

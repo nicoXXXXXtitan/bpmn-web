@@ -1,39 +1,57 @@
-extends layout
+extends layout-onepoint
 
 block content
 
-	h3 Invoking Item  '#{node.id}#{name}' of #{processName}
-	p Item Id: #{id}
+	div(class="page-invoking")
+		div(class="page-invoking-header")
+			h3 Invocation de l'élément '#{node.id}#{name}' de #{processName}
+		div(class="page-invoking-content")
+			table.table.table-striped
+				thead
+					tr
+						th(scope='col') Name
+						th(scope='col') Value
 
-	h4 Data 
-	table
-		each v in vars
-			tr
-				td #{v.key}
-				td #{v.value}
-	
-	table
-		form(name='InvokeForm',action="/invokeItem",method="post")
-			input(type='hidden',name='itemId',id='itemId',value=`${id}`)
+				tbody
+					each v in vars
+						tr
+							td #{v.key}
+							td #{v.value}
 
-			each field in fields
-				tr 
-					a(vertical-align="top")
+		form
+			.mb-3
+				label.form-label(for="exampleInputEmail1") Email address
+				input#exampleInputEmail1.form-control(type="email" aria-describedby="emailHelp")
+				#emailHelp.form-text We'll never share your email with anyone else.
+			.mb-3
+				label.form-label(for="exampleInputPassword1") Password
+				input#exampleInputPassword1.form-control(type="password")
+			button.btn.btn-primary(type="submit") ENVOYER
 
-					td #{field.label}
-					td  
-						if (field.type=='enum')
-							select(name=`${field.id}`)
-								each v in (field['$children'])
-									if (v.$type=='camunda:value')
-										if (v.id == field.defaultValue)
-											option(value=`${v.id}` selected) #{v.name}
-										else
-											option(value=`${v.id}`) #{v.name}
-						else if (field.type=='date')
-							input(name=`${field.id}` type='date')
-						else
-							input(name=`${field.id}`)
-			tr
-				td
-					input(type='submit')
+
+		
+		table
+			form(name='InvokeForm',action="/invokeItem",method="post")
+				input(type='hidden',name='itemId',id='itemId',value=`${id}`)
+
+				each field in fields
+					tr 
+						a(vertical-align="top")
+
+						td #{field.label}
+						td  
+							if (field.type=='enum')
+								select(name=`${field.id}`)
+									each v in (field['$children'])
+										if (v.$type=='camunda:value')
+											if (v.id == field.defaultValue)
+												option(value=`${v.id}` selected) #{v.name}
+											else
+												option(value=`${v.id}`) #{v.name}
+							else if (field.type=='date')
+								input(name=`${field.id}` type='date')
+							else
+								input(name=`${field.id}`)
+				tr
+					td
+						input(type='submit')
