@@ -99,41 +99,37 @@ block content
 				h4 Instance Items
 
 				span Times shown are from the start of the Execution
-				table
-					tr
-						td seq
-						td Element Id
-						td Name
-						td Started
-						td Ended
-						td Status
-						td Type
-						td User
-						td Action
+					
+				table.table.table-striped
+					thead
+						tr
+							th(scope='col') seq
+							th(scope='col') Element Id
+							th(scope='col') Name
+							th(scope='col') Status
+							th(scope='col') Action
 							
-					- let seq=0;
-					each item in items
-						- var ref = "?id="+item.id+"&processName="+instance.name+"&elementId="+item.elementId;
-						- var label='';
-						- var label2='';
-						- if (item.status=='wait' && item.type=='bpmn:UserTask') label= 'Execute';
-						- if (item.status=='wait' && item.type=='bpmn:UserTask') label2= 'Assign';
-						- if (user && user.isAdmin() && item.status=='wait' && item.type.includes('Event')) label= 'Force';
-						- var assign='';
-						- if (item.candidateUsers) assign+='>Assigned to users:\''+item.candidateUsers+'\'';
-						- if (item.candidateGroups) assign+=' groups: \''+item.candidateGroups+'\'';
-						- if (item.assignee) assign+=' Assigned to: \''+item.assignee+'\'';
-						- if (item.dueDate) assign+=' Due on:'+item.dueDate;
-						- seq++;
+					tbody
+						- let seq=0;
+						each item in items
+							- var ref = "?id="+item.id+"&processName="+instance.name+"&elementId="+item.elementId;
+							- var label='';
+							- var label2='';
+							- if (item.status=='wait' && item.type=='bpmn:UserTask') label= 'Execute';
+							- if (item.status=='wait' && item.type=='bpmn:UserTask') label2= 'Assign';
+							- if (user && user.isAdmin() && item.status=='wait' && item.type.includes('Event')) label= 'Force';
+							- var assign='';
+							- if (item.candidateUsers) assign+='>Assigned to users:\''+item.candidateUsers+'\'';
+							- if (item.candidateGroups) assign+=' groups: \''+item.candidateGroups+'\'';
+							- if (item.assignee) assign+=' Assigned to: \''+item.assignee+'\'';
+							- if (item.dueDate) assign+=' Due on:'+item.dueDate;
+							- seq++;
+
 							tr
-								td #{seq}
+								th(scope='row') #{seq}
 								td #{item.elementId}
 								td #{item.name}
-								td(class='date') #{item.startedAt}
-								td(class='date') #{item.endedAt}
 								td #{item.status}
-								td #{item.type}
-								td #{item.userName}
 								td
 									a(href=`/invokeItem${ref}`) #{label} 
 									a(href=`/assign${ref}`) #{label2}
