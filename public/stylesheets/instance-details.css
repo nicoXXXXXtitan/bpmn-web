@@ -1,17 +1,24 @@
+h1 {
+    text-align: center;
+    float: none !important;
+}
+
+
 #instance-block {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
 }
 
 #instance-block .instance-svg{
-    width: 60%;
+    width: 65%;
     height: auto
 }
 
 #instance-block .instance-items{
     width: 30%;
-    height: auto
+    height: auto;
+    text-align: center;
 }
 
 #instance-block .instance-items table th{
@@ -19,7 +26,12 @@
 }
 
 #instance-block .instance-items table td{
-    padding: 8px 0px !important ; 
+    padding: 8px 0px !important ;
+    vertical-align: middle;
+}
+
+#instance-block .instance-items table tbody tr th{
+    vertical-align: middle;
 }
 
 #instance-block .instance-svg div svg{
@@ -29,12 +41,13 @@
 
 .instance-detail-buttons {
     display: flex;
+    justify-content: center;
 }
 
 .instance-detail-button{
     border-radius: 6px;
     border-color: rgb(33, 37, 41);
-    padding: 9px;
+    padding: 6px;
 }
 
 .instance-detail-button a{
