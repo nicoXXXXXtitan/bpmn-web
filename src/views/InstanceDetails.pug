@@ -101,7 +101,6 @@ block content
 					thead
 						tr
 							th(scope='col') Seq
-							th(scope='col') Element Id
 							th(scope='col') Nom
 							th(scope='col') Statut
 							th(scope='col') Action
@@ -114,7 +113,7 @@ block content
 							- var label2='';
 							- if (item.status=='wait' && item.type=='bpmn:UserTask') label= 'exécuter';
 							- if (item.status=='wait' && item.type=='bpmn:UserTask') label2= 'Attribuer';
-							- if (user && user.isAdmin() && item.status=='wait' && item.type.includes('Event')) label= 'Forcer';
+							- if (user && user.isAdmin() && item.status=='wait' && item.type.includes('Event')) label= 'Terminer';
 							- var assign='';
 							- if (item.candidateUsers) assign+='>Assigned to users:\''+item.candidateUsers+'\'';
 							- if (item.candidateGroups) assign+=' groups: \''+item.candidateGroups+'\'';
@@ -124,7 +123,6 @@ block content
 
 							tr
 								th(scope='row') #{seq}
-								td #{item.elementId}
 								td #{item.name}
 								td #{item.status}
 								td
@@ -134,7 +132,7 @@ block content
 											div.instance-detail-button
 												a(class="instance-detail-button" href=`/invokeItem${ref}`) #{label}
 
-											div.instance-detail-button
+											div.instance-detail-button(style="display: none")
 												a(class="instance-detail-button" href=`/assign${ref}`) #{label2}						
 						if (!assign=='')
 							tr
