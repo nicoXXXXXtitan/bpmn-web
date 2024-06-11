@@ -185,7 +185,7 @@ export class Workflow extends Common {
                 response.send(exc.toString());
             }
         }));
-        router.post('/invokeItem', awaitAppDelegateFactory(async (request, response) => {
+        router.post('/invokeItem', awaitAppDelegateFactory(async (request, response) => { 
             let id = request.body.itemId;
             let data = {};
             
@@ -200,7 +200,10 @@ export class Workflow extends Common {
 
                 let result = await bpmnAPI.engine.invoke({ "items.id": id }, data, getSecureUser(request));
 
-                afterOperation(request,response,result);
+                let currentInstanceId = result.id
+
+                // afterOperation(request,response,result);
+                response.redirect(`/instanceDetails?id=${currentInstanceId}`);
             }
             catch (exc) {
                 response.send(exc.toString());
@@ -492,6 +495,7 @@ async function display(req,res, title, output, logs = [], items = []) {
 function show(output) {
     return output;
 }
+
 async function afterOperation(request,response,result) {
 
     //console.log("isAuthenticated", request.isAuthenticated(), 'user', request.user);
@@ -501,7 +505,7 @@ async function afterOperation(request,response,result) {
 //    else
         display(request,response, 'Show', []);
 
-//    response.redirect('/instanceDetails?id=' + result.execution.id);
+        // response.redirect('/instanceDetails?id=' + result.execution.id);
 //    console.log('items#',result.instance.items.length);
 
 }
