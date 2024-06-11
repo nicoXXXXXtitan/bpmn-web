@@ -7,6 +7,11 @@ body {
 a {
     color: #00B7FF;
 }
+
+.navbar-header img {
+  height: 19px;
+}
+
 tr { vertical-align: top;}
 #docs td { padding:3px !important;}
 #docs { width: fit-content;}

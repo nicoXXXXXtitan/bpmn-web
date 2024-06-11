@@ -70,7 +70,7 @@ function getText(processName, xml) {
             <span class="icon-bar"></span>
         </button>
         <a href="/" class="navbar-brand">
-            <img src="https://demo.omniworkflow.com/web//images/omniworkflow_icon.png" /></a>
+          <img src="/images/favicon-h.ico" style="height:19px" /></a>
     </div>
     <!-- Collection of nav links, forms, and other content for toggling -->
     <div id="navbarCollapse" class="collapse navbar-collapse">
