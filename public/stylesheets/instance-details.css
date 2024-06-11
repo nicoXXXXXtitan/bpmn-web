@@ -9,18 +9,18 @@
 }
 
 #instance-block .instance-svg{
-    width: 65%;
+    width: 70%;
     height: auto
 }
 
 #instance-block .instance-items{
-    width: 30%;
+    width: 27%;
     height: auto;
     text-align: center;
 }
 
 #instance-block .instance-items h4 {
-    padding: 20px;
+    padding: 10px 20px;
 }
 
 
