@@ -1,8 +1,6 @@
-h1 {
-    text-align: center;
-    float: none !important;
+.instance-detail-h1 h1{
+    font-size: 20px !important;
 }
-
 
 #instance-block {
     display: flex;
