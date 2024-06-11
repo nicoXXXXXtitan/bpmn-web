@@ -121,19 +121,20 @@ block content
 							- if (item.dueDate) assign+=' Due on:'+item.dueDate;
 							- seq++;
 
-							tr
-								th(scope='row') #{seq}
-								td #{item.name}
-								td #{item.status}
-								td
-									if (!label=='' || !label2=='')
-									
-										div.instance-detail-buttons
-											div.instance-detail-button
-												a(class="instance-detail-button" href=`/invokeItem${ref}`) #{label}
+							if (item.type == 'bpmn:UserTask' || item.type == 'bpmn:BoundaryEvent')
+								tr
+									th(scope='row') #{seq}
+									td #{item.name}
+									td #{item.status}
+									td
+										if (!label=='' || !label2=='')
+										
+											div.instance-detail-buttons
+												div.instance-detail-button
+													a(class="instance-detail-button" href=`/invokeItem${ref}`) #{label}
 
-											div.instance-detail-button(style="display: none")
-												a(class="instance-detail-button" href=`/assign${ref}`) #{label2}						
+												div.instance-detail-button(style="display: none")
+													a(class="instance-detail-button" href=`/assign${ref}`) #{label2}						
 						if (!assign=='')
 							tr
 								td
