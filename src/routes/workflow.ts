@@ -179,7 +179,11 @@ export class Workflow extends Common {
             try {
                 let result = await bpmnAPI.engine.invoke({ "items.id": id }, {}, getSecureUser(request));
 
-                afterOperation(request,response,result);
+                let currentInstanceId = result.id
+
+
+                // afterOperation(request,response,result);
+                response.redirect(`/instanceDetails?id=${currentInstanceId}`);
             }
             catch (exc) {
                 response.send(exc.toString());
